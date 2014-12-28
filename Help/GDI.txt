@@ -1,0 +1,162 @@
+--------------------------------------------------
+        	  System Quick Point
+         README for Graphic Driver Interface
+                     June 2002
+--------------------------------------------------
+
+(c) Copyright System Quick Programming Group, 2002
+
+
+This document provides complementary or late-breaking 
+information to supplement the System Quick Point documentation.
+
+-------------------------------
+FUNCTIONS & PROCEDURES CONTENTS
+-------------------------------
+
+1 - init, destroy graphic module
+
+1.1  procedure init_graph;
+1.2  procedure destroy_graph;
+
+2 - Put&Get Image
+
+2.1  procedure PutXMSImage(img:PXMS2DArray;x1,y1,x2,y2:word);
+2.2  function  GetXMSImage(x1,y1,x2,y2:word):PXMS2DArray;
+2.3  procedure NewImage(x1,y1,x2,y2:integer;var p:pointer;var size:word);
+2.4  procedure DisposeImage(p:pointer;size:word);
+
+3 - Drawing icons & special forms
+
+3.1  procedure RectAngle3d(x1,y1,x2,y2,color1,color2:word);
+3.2  procedure NewRectangle3d(x1,y1,x2,y2,color1,color2,color3,color4:word);
+3.3  procedure Load_IconWin16(xx,yy :integer;iconname :string);
+3.4  procedure Load_IconWin32(xx,yy :integer;iconname :string;transparent:byte);
+3.5  procedure load_icon32(xx,yy :integer;iconname :string);
+3.6  procedure Put_wdICON(IcoX,IcoY:integer);
+
+4 - Palette
+
+4.1  procedure GetPal(ColorNo : Byte; Var R,G,B : Byte);
+4.2  procedure SetPal(ColorNo : Byte; R,G,B : Byte);
+4.3  procedure RESET_COLORS;
+4.4  procedure SWAP_COLORS(col1,col2 :byte);
+4.5  procedure Fade_Down(speed :byte);
+
+5 - Bitwise
+
+5.1  function  setbit(nr:byte;bit,on:byte):byte;
+5.2  function  getbit(nr,bit:byte):byte;
+5.3  function  getbitNo(nr:byte):byte;
+5.4  function  getbyteNo(nr:byte):byte;
+
+
+6 - Other (!)
+
+6.1  function  FileExists(FileName: String): Boolean;
+6.2  procedure CopyFile(FromFName, ToFName:String);
+6.3  function  ErrorMsg(id:byte):string;
+6.4  procedure SCREEN_OFF;
+6.5  procedure SCREEN_ON;
+6.6  procedure DebugBar(s:string);
+6.7  function  Int2Str(x:longint):string;
+6.8  procedure Wave(Hz,pas:word);
+
+------------------------------------------------------------------------------------------------
+
+
+1.1  procedure init_graph;
+ - initialize graphic module with the appropriate driver for your card
+
+1.2  procedure destroy_graph;
+ - destroys the graph module returning to the CRT mode
+
+2.1  procedure PutXMSImage(img:PXMS2DArray;x1,y1,x2,y2:word);
+ - put an xms image on the screen at ((x1,y1),(x2,y2))
+
+2.2  function  GetXMSImage(x1,y1,x2,y2:word):PXMS2DArray;
+ - load's in xms an image of ((x1,y1),(x2,y2)) (image size limit = MaxXMSMemoryBlock)
+
+2.3  procedure NewImage(x1,y1,x2,y2:integer;var p:pointer;var size:word);
+ - load's an image in a pointer (imagesize<=64KBytes)
+
+2.4  procedure DisposeImage(p:pointer;size:word);
+ - destroys the image
+
+3.1  procedure RectAngle3d(x1,y1,x2,y2,color1,color2:word);
+ - Draws an 3D rectangle used for drawing the windows
+ - |- = color 1, _| = color 2
+
+3.2  procedure NewRectangle3d(x1,y1,x2,y2,color1,color2,color3,color4:word);
+ - Draws an 3D rectangle used for drawing the windows
+ - |- = color 1,2 , _| = color 3,4
+
+3.3  procedure Load_IconWin16(xx,yy :integer;iconname :string);
+ - load's an icon from a file on 16 bits
+
+3.4  procedure Load_IconWin32(xx,yy :integer;iconname :string;transparent:byte);
+ - load's an icon from a file on 32 bits
+
+3.5  procedure load_icon32(xx,yy :integer;iconname :string);
+ - another 32 bits icon load method
+
+3.6  procedure Put_wdICON(IcoX,IcoY:integer);
+ - put the special point icon
+
+4.1  procedure GetPal(ColorNo : Byte; Var R,G,B : Byte);
+ - Gets the palette of an given color, and returning the Red, Gren and Blue vals
+
+4.2  procedure SetPal(ColorNo : Byte; R,G,B : Byte);
+ - Set's a palette
+
+4.3  procedure RESET_COLORS;
+ - Resets the graphic driver colours changed with SetPal or Swap_colors
+
+4.4  procedure SWAP_COLORS(col1,col2 :byte);
+ - Swap 2 colors
+
+4.5  procedure Fade_Down(speed :byte);
+ - A nice fade down procedure
+
+5.1  function  setbit(nr:byte;bit,on:byte):byte;
+ - A fast assembler function returning a byte after setting the bit <bit>, <on>=0,1 on <nr>
+
+5.2  function  getbit(nr,bit:byte):byte;
+ - A fast assembler function returning the (0,1) bit <bit> of a byte
+
+5.3  function  getbitNo(nr:byte):byte;
+ - A fast assembler function returning the no of the bit in an compressed boolean array
+ - NOTE: compressed boolean array = instead using an array[...] of boolean, witch occupies a
+         lot of memory we use an array[...] of bytes, reducing the size occupied in memory by
+         8 times the result remains the same.
+        ex: if you want to use the 70'th boolean, then you must type like this:
+
+             mybit:=Getbit( x[getbyteno(70)], getbitno(70) );
+
+5.4  function  getbyteNo(nr:byte):byte;
+ - A fast assembler function returning the no of the byte in an compressed boolean array
+ 
+6.1  function  FileExists(FileName: String): Boolean;
+ - It returns true if the file exist else it returns false
+
+6.2  procedure CopyFile(FromFName, ToFName:String);
+ - copies a file
+
+6.3  function  ErrorMsg(id:byte):string;
+ - return the <id> error message
+
+6.4  procedure SCREEN_OFF;
+ - shut down the screen
+
+6.5  procedure SCREEN_ON;
+ - reopen the screen
+ - NOTE: do not use this before you use Screen_off
+
+6.6  procedure DebugBar(s:string);
+ - writes an string to the debugbar
+
+6.7  function  Int2Str(x:longint):string;
+ - transforms an longint (32 bits) to an string; used for writing numbers on the screen
+
+6.8  procedure Wave(Hz,pas:word);
+ - plays an sound <pas> milliseconds on <Hz> Hertz

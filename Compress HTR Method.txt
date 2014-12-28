@@ -1,0 +1,26 @@
+---------------------------------
+----- Compressed Hyper Text -----
+--------------------Method-------
+
+HTR ---> PRC (COMPHTRL.EXE)
+
+Compress HTR Files between 60% - 75% (60,5662... ; 73,39699...)
+.......
+ PRC(1) ---> PRC (2) - compression 96% (95,7942...)
+
+
+-----------------------Method----------------------------------
+<window>   - > bit 0
+<button>   - > bit 1
+<input>    - > bit 2
+<ceckbox>  - > bit 3
+<radiobox> - > bit 4
+<combobox> - > bit 5
+
+00000000 - 00111111 : 0 - 63 : 
+
+bit 7 - bit 6
+00 		- 1 byte
+01 		- 4 bytes
+10 		- 8 bytes
+11 		- 256 bytes

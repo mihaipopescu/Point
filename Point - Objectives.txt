@@ -1,0 +1,59 @@
+ - Start menu unfinished (I want to make-it to auto-modify
+  ... referring to a directory " C:\POINT\PROGRAMS\...\ ")
+
+  Dialog windows with :
+   - text (edit text, read only, input text) 
+   - icon (form specific files *.qic)      [ok]
+   - buttons (eg. OK, Cancel, Apply, etc.) [Ok]
+
+  Application windows :
+   - menus 			[ok - 50 %]
+   - buttons ( +icon)
+   - Progress Bar
+   - the program itself (eg. in a procedure ???)
+
+  DeskTop
+   - icons --> opens windows
+   - if PointExplorer_Exists then Create_RecycleBin;
+
++----------+ Do not forget to compile the program with minimum compiler
+| NOTE !!! | options !	Without checking or debugging ...
++----------+ 
+
+======================================================================
+ 1) Bitwise control class implementation
+ 2) Menu implementation (horiz,vert)
+ 3) Control Region
+      a) -Input region  +---------------+     Max length
+			|*******|       |     Text length
+			+---------------+     password
+
+                        +-------------+-+ 
+			|    	      |^|
+			|             | |
+			|	      |	|  MaxY
+			|	      |v|     
+			+-------------+-+ 
+				MaxX
+		op     :  maxx,maxy,textlength
+		setable:  readonly, inittext, password;
+
+      b) -Select region   o < >   +------+  	
+			  * <x>   |.....v|  ok, cancel, apply, help,..
+			  o <x>	  +------+
+                type: radio ceck   combo           button
+======================================================================
+
+1) Point Explorer (an integrated viewer for - programming languages (pascal,c/c++)
+					     - HTML
+					     - INI
+					..............
+		   )		
+2) WordPad
+3) Paint   (for edit & view images)
+4) MS-DOS
+5) RUN      ( *.EXE; *.COM; *.BAT; *.PAS )
+6) HELP
+7) Find files
+8) Calculator
+9) Games

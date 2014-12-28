@@ -1,0 +1,9 @@
++--Contact-the-author------[ Mihai Popescu ]------+
+| Country     : Romania                           |
+| City        : Craiova                           |
+| Zip Code    : 1100                              |
+| Street      : Henri Coanda, Bl. C7, sc.2, ap.14 |
+| Tel         : +(40) 051 124230                  |
+| Fax         : +(40) 051 417842                  |
+| Email       : kernel_hffff@k.ro                 |
++-------------------------------------------------+

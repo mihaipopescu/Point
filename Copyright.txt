@@ -1,0 +1,6 @@
+                         " System Quick Point "
+                                           --=== Software ===--
+                             Release 1.0
+
+System Quick Programming Group
+Author:  Mihai Popescu

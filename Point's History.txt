@@ -1,0 +1,144 @@
+_____________________
+((                 ))
+(:| Point History |:)
+((_________________))
+(((((		)))))
+
+2:25 PM 11/1/01 - 4900 lines 
+ - Beta version
+ - bugs unfixed
+ - The idea with the "History" ... :) 
+
+9:12 PM 11/1/01 - 4830 lines 
+ - more compressed code and more efficient
+ - deleting program segments with buttons management
+    because it used a lot of memory ...
+ - no buttons allowed in the program
+ - program may be used, but there are no management system 
+   made for writing the contents of the windows to the screen;
+
+3:37 PM 11/7/01 - 4860 lines
+ - more compressed code and more efficient
+ - window management algorithm finished
+ - all bugs fixed (referring to windows)
+
+8:18 PM 12/21/01 - 5000 lines
+ - more compressed code and memory management reviewed
+ - circular units eliminated
+ - adding icons (16, 32 bits loading icons)
+ - adding the PlayHSC option with its circular musics (never ends)
+ - introducing Resources for the first time
+ - now, windows can be loaded from files and you don't need to have 
+   them in your code
+ - this version supports only to draw the CeckBoxes resources obviously
+   form files
+ - including the best code for drawing a button ("double ways" method)
+ - enabling the cursors provided by "mouse" unit (normal, resize wnd, and think cursors)
+ - Obviously, releasing the 1st version of the Resource Assembler. 
+   This program can make easy complex resources, with only a few commands;
+   Is a program based on command line commands, so if you don't know the
+   command don't worry, the program will help you with that only if you really
+   want help. (Try typing 'Help' or '?')
+:)) As you can see, is December and is Xmas, so Good Bye. See you around !
+
+22:24 10.01.2002 - 5800 lines {I'm using now Win98}
+ - Multitasking added (the great achievement !!!) (now we can run for eg. 2 procedures in 
+			the same time. Its awesome !)
+ - Palette functions added (eg. Fade Down)
+ - we now can save in files img's directly from screen (and even in *.ico format)
+ - Loading Icon files on 16 or 32 bits (16 colors)
+ - still not found a driver for mouse to work on this :
+          800 x 600 x 256 
+         1024 x 768 x 256 (or higher) (???????)
+     to work means to do not make errors on this test:
+
+{{{{{{{{ cut here }}}}}}}}}}}
+	procedure test;
+	begin
+	 repeat
+	  HideMouseCursor;
+	  ShowMouseCursor;
+         until keypressed;
+	end;
+{{{{{{{{ cut here }}}}}}}}}}}
+   Conclusion ==>> Program remains on 640 x 400 x 16 colors (the test here works ?!?!?)
+
+21:15 11.01.2002 - 6321 lines
+ - we separates the first time the drivers from the others files, now in "Drivers\"
+ - we give live to buttons. now the buttons work with an ingenious method of "clicked/uncliked"
+ - Memory now is 73% free ( from 640 Kbytes not from 32 Mbytes !!! 
+			    eg. only Win 95  1   MBytes		2,2 times more memory
+				     Win 98  2,5 MBytes		5,5 times more memory
+
+				with no program installed) 
+21:54 16.01.2002 - 6474 lines
+ - the implementation of radiobox's that uses the same method "clicked/unclicked"
+ - the first ShutDown menu (with palette changer)
+ - we can now load icons with a transparent color
+ - Memory now is 72% free
+
+18:33 18.01.2002 - 6610 lines
+ - the full implementation and use of radioboxs (ARC-DeARC Method [view 'CeckBoxs-ARC-Method.txt'])
+ - Memory now is 71% free
+
+22:38 28.01.2002 - 6760 lines
+ - the first implementation of <Window's Flags> ( for activate/inactivate the system's buttons
+						 - close, minimize, maximize )
+   using a very useful method of memory management;
+ For example you can inactivate all buttons, or the one you want, simply by using the binary
+ operator  "+'.
+     eg.     SetWindowsFlagsOff( 1, FLClose + FLMinimize + FLMaximize );
+		{ this turns off all three buttons of window 1 }
+	     SetWindowsFlagsOn ( 2, FlCLose );
+    		{ this turns on only the close button of window 2 }		
+  you can now easily use this procs for activate/inactivate very easy the buttons;
+ - Memory now is 71% free
+
+20:11 29.01.2002 - 6850 lines
+ - MultiControls Support added. Now you can use 255 lists of radiobox's and ceckboxes on every
+   window you have. Now the lists are saved to the disk and the size of an *.lst file is 
+   8 Kbytes, not more or less. The lists are loaded into the memory with (32+1) bytes, and if
+   there are more than one list the first one is destroyed from the memory and the new one is 
+   loaded into the memory, so you always use 33 bytes for all your list. (no testing [beta ver.])
+ - Memory now is 71% free
+
+19:38 30.01.2002 - 7000 lines
+ - Text Control Support added (only the drawing, the control is inactive)
+ - Necessary update of Resource Assembler (text region field added). Rewriting resource files.
+ - Memory remains 71% free
+
+22:48 01.02.2002 - 7066 lines
+ - MultiControls test made. Result: total success ! (so we can say [alpha ver.])
+ - Memory is 74% free { more compressed code with less variables, and using of HEAP }
+
+19:32 03.05.2002 - 6868 lines
+ - Previous Point Resource Files removed. Gain 96% Hard disk memory, with new *.PRC files,
+   compressed from Hyper Text Resource Files (view 'Hyper Text Resource.txt')
+ - creating a compression program to compress HTR files into PRC's to implement in GUI
+ - rewriting the gui ('DrawWindowControls'), and separating the gui from the gdi.
+ - Memory is 73% free
+
+16:20 07.05.2002 - 6557 lines
+ - more compressed code
+ - deleting old PRC window handlers and implementing the new ones
+ - Memory is 72% free
+
+21:35 10.06.2002 - 6680 lines
+ - recoding the ceckbox, radiobox list disk saving. Now you can more easy to save on the disk
+   the on/off lists.
+ - Memory is 72% free
+
+16:20 11.06.2002 - 6700 lines
+ - MultiControls bugs fixed.
+ - Minimum IO disk operation with temp files
+ - Memory is 72% free
+
+20:00 11.06.2002 - 7133 lines
+ - XMS added
+ - Memory is 74% free
+
+12:00 30.06.2002 - 6556 lines
+ - code optimizations
+ - Memory is 74% free
+ - aborting the project (discover of the OOP=much easier)
+ - see ya Point ! (the non object orientated program)

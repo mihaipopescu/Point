@@ -1,0 +1,86 @@
+<window>
+   id=1;
+   position=45,45,490,190;
+   string = "Ceck Box win";
+
+    <CeckBox>
+       id=1;
+       insertpoint=5,30;
+        string = "Graphic User Interface & Multitasking by";
+        string = "Mihai Popescu";
+        string = "Copyright by (c) 2002 System Quick Programming Group";
+    </CeckBox>
+
+    <Button>
+      id=1;
+      position=105,100,175,120;
+      string="Ok";
+    </Button>
+
+    <Button>
+      id=2;
+      position=180,100,250,120;
+      string="Cancel<point.ico>";
+    </Button>
+ 
+</window>
+
+<window>
+
+   id=2;
+   position=50,50,420,300;
+   string="Application Window";
+
+</window>
+
+<window>
+     id=3;
+     position=224,170,394,310;
+     string="Shut down ..."
+
+    <RadioBox>
+      Id=1;
+      insertpoint=40,45;
+        string="Shut Down";
+        string="Suspend...";
+        string="Restart";
+    </RadioBox>
+
+    <Button>
+      id=1;
+      position=5,100,75,120;
+      string="Ok";
+    </Button>
+
+    <Button>
+     id=2;
+     position=80,100,150,120;
+     string="Cancel";
+    </Button>
+
+</window>
+
+<window>
+    id=4;
+    position=100,70,535,200;
+    string="Text Example";
+
+    <Input>
+     ID=1;
+     position=12,20,51,9;
+     string="contact.txt";
+    </Input>
+
+    <Button>
+      id=1;
+      position=125,100,195,120;
+      string="Ok";
+    </Button>
+
+    <Button>
+      id=2;
+      position=200,100,270,120;
+      string="Cancel";
+    </Button>
+
+</window>

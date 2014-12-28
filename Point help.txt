@@ -1,0 +1,207 @@
++--------------------------------------+
+|-Graphic User Interface---------------|  Only for programmers !!!
+|---------for Borland Pascal ver 7.0---|  New !  
++--------------------------------------+
+                	Copyright (C) 2002 by System Quick Programming Group
+
++-------+
+|-INTRO-|
++-------+ 
+This unit provides you a series of procedures and functions very very useful for programmers who
+want to make a BIG & HARD program (over 150000 lines). This unit is written in Pascal usual 
+language, easy to understand by everyone. Also, it uses very small amount of memory, remaining
+for you 77% from 640 KBytes. The unit uses no extra memory, only that provided by the Pascal.
+We present now all the public procedures and functions that you can use.
+type Tprocedure=procedure;
+
+{- Tipul Menu - }
+type
+ PString=^String;               {pointer la string}
+ PMenu = ^TMenu;                {pointer la TMenu}
+ PMenuItem = ^TMenuItem;        {pointer la TMenuItem}
+ TMenuStr = string[31];         {max length(MenuName) = 2^5-1}
+
+ TMenuItem = record             {inregistrarea pt. TMenuItem (o unitate din meniu)}
+   Next:PMenuItem;              {urmatoarea unitate}
+   Name:PString;                {numele unitatii}
+   Command:word;                {cmxxxx constants}
+   Disabled:Boolean;            {default false}
+   HelpCtx:word;                {hcxxxx - Help Context ordinal}
+   SubMenu:PMenu;               {urmatorul submeniu}
+ end;
+
+TMenu = record                  {inregistrarea pentru TMenu}
+ Items:PMenuItem;               {retine lista de unitati de meniu}
+end;
+
+{- Tipul fereastra -}
+
+type TWindowPosition=record             {8 bytes}
+       x1,y1,x2,y2:word;
+     end;
+
+     wnd_Tstate=(normal,minimized,maximized,closed);     {starea ferestrei}
+
+     wnd_type=(dialog,application);      {tipul ferestrei}
+
+type PWnd_res=^TWnd_res;
+     TWnd_res=record              {window resources}
+         Name  :PString;          {retine numele ferestrei, utilizat pentru redraw_bar, dupa close}
+     WindowPos :TWindowPosition;  {retine coordonatele ferestrei}
+         State :wnd_Tstate;       {starea curenta}
+         Menu  :PMenu;            {meniul (daca este tip=application <> nil, daca nu = nil}
+         Max   :boolean;          {este TRUE cand state a fost maximize inainte de minimize}
+         Xbar,                    {nr de ordine pe bara de taskuri}
+         Id    :byte;             {nr de identificare al ferestrei}
+         Next  :PWnd_res;         {pointer spre urmatoarea fereastra}
+         Z     :byte;             {distanta 3D pe OZ de la desktop (Zd=0)}
+        WType  :Wnd_type;         {tipul de fereastra}
+      ResourceF:String[31];           {fisierul cu resursele}
+      end;
+
+{constructors and descturctors}
+procedure init_graph;   
+procedure destroy_graph;  
+procedure init_mouse; 
+procedure destroy_mouse; 
+
+function anybutton:boolean;   
+         {function that returns if any button of your mouse is pressed}
+function mouse_on(x1,y1,x2,y2:word):boolean;
+         {function that returns if the cursor mouse is in a rectangle determinated by 2 points}
+
+{Window procs}
+procedure RectAngle3d(x1,y1,x2,y2,color1,color2:word);
+	  {draws a 3Dimensional rectangle}
+procedure NewRectangle3d(x1,y1,x2,y2,color1,color2,color3,color4:word);
+          {draws a 3Dimansional rectangle but with 4 colors}
+procedure wr_window(x1,y1,x2,y2,color:word;s:string;tip:wnd_type;menu:PMenu);
+	  {draws a window}
+procedure NewWindow(Nr:byte);
+          { procedura window are implementat comanda de inchidere si de drag-and-drop
+            ca variabile de intrare sunt coordonatele x1,y1,x2,y2 care se introduc cu ajutorul
+            variabilei de tip TWindowPosition=record, culoarea titlului si titlul;
+            Variabila Window_on este variabila care ne spune daca fereasta este deschisa sau
+            inchisa.
+            procedura are implementata si functiile de close_wnd, move_wnd, resize_wnd
+                 si maximize_wnd, minimize}
+
+procedure HandleWindows;
+
+function WindowExist(nr:byte):boolean;
+           { verifica daca esista fereastra cu id-ul nr; vede daca poinerul catre fereastra
+             cu id=nr este diferita de nil}
+
+
+procedure OpenWindow(Nr:byte;_pos:TWindowPosition;title:string;tip:wnd_type;NMenu:Pmenu);
+{incarca o fereastra in memorie direct}
+
+procedure LoadWindow(ResF:string;nr:byte;NMenu:Pmenu);
+{incarca o fereastra in memorie indirect dintr-un fisier cu resurse}
+
+{procedura pentru ceas}
+procedure clock(cp:PointType);
+
+{-- Buttons --}
+procedure Draw_Button(x,y,xx,yy :word;caption :string;_color:byte;click:boolean);
+          {Deseneaza un button}
+{other}
+
+procedure load_icon16(xx,yy :integer;iconname :string);
+procedure load_icon32(xx,yy :integer;iconname :string);
+          {incarca o fila de tip icon (*.ico) pe 16 sau 32 biti}
+procedure DebugBar(s:string);
+          {bara de debug...optionala}
+function Int2Str(x:longint):string;
+          {integer -- > string}
+procedure Vawe(Hz,pas:word);
+          {procedura pt sunet}
+procedure main_bar;
+          {deseneaza bara principala}
+procedure main_screen;
+          {deseneaza ecranul pincipal}
+
+{Menu implementation part}
+
+      function NewStr(const S: String): PString;
+               {returneaza un pointer spre un string}
+      procedure DisposeStr(P: PString);
+               {Distruge pointrul creeat de NewStr}
+      function MenuExist(nr:byte):boolean;
+               {vede daca exista meniul ferestrei cu numarul ordine (nr)}
+      function NewMenu(Items: PMenuItem): PMenu;
+               {Creeaza un nou meniu returnand un pointer catre inregistrarea TMenu}
+      function NewItem(Name: TMenuStr; Command: Word;AHelpCtx: Word; Next: PMenuItem): PMenuItem;
+               {Creeaza o noua unitate de meniu, returnanad un pointer catre structura TMenuItem}
+      function NewLine(Next: PMenuItem): PMenuItem;
+               {Creeaza o linie "SEPARTOR" }
+      function NewSubMenu(Name: TMenuStr; AHelpCtx: Word; SubMenu: PMenu; Next: PMenuItem): PMenuItem;
+               {creeaza un nou submeniu}
+      procedure DrawMenu(Menu:PMenu;x,y:word);
+               {deseneaza meniul Menu la (x;y)}
+      procedure DisposeMenu(Menu: PMenu);
+               {Elibereaza memoria alocata pentru un meniu}
+{ - Start Menu -}
+procedure StartPoint;
+
+
+
+{---EXAMPLE----------------------------}
+program myprogram;
+uses myunits,...;
+
+
+procedure myprogram_Init;
+begin
+ ......... {you put here your vars. you must init all these vars}
+end;
+
+procedure myprogram_Run;
+begin
+ .......... {your basic program}
+end;
+
+procedure myprogram_Done;
+begin
+ .......... {your normal exit (noerror) procedure. ex. writeln('Bye Bye'); }
+end;
+
+
+BEGIN 
+ MyProgram_Init;
+ MyProgram_Run;
+ MyProgram_Done;
+END.
+
+{---END-OF-EXAMPLE----------------------}
+
+
+
+
+
+------------
+ DISCLAIMER
+------------
+
+ THIS SOFTWARE AND MANUAL ARE SUPPLIED "AS IS". THE AUTHOR, POPESCU MIHAI,
+ DISCLAIMS ALL WARRANTIES RELATING TO THIS SOFTWARE AND ITS DOCUMENTATION
+ FILE, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO DAMAGE TO HARDWARE,
+ SOFTWARE AND/OR DATA FROM USE OF THIS PRODUCT. IN NO EVENT WILL THE AUTHOR
+ OF THIS SOFTWARE BE LIABLE TO YOU OR ANY OTHER PARTY FOR ANY DAMAGES.
+ YOUR USE OF THIS SOFTWARE INDICATES THAT YOU HAVE READ AND AGREE TO THESE
+ AND OTHER TERMS INCLUDED IN THIS DOCUMENTATION FILE.
+
+ All trademarks are the property of their respective owners.
+
+---------
+ CREDITS
+---------
+
+                	Copyright (C) 2002 by System Quick Programming Group
+
+		PROGRAMMER : POPESCU MIHAI
+	   		     
+ ____/| 
+ \ o_O| 
+  =(_)= 
+    U    	 

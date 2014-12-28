@@ -1,0 +1,101 @@
+{include RCScript}
+
++-----------------------------+
+| Point ResourCe File - *.PRC | [tm] (c) System Quick Programming Group
++-----------------------------+
+
+
+
+{script language description}
+
+
+***********************
+* GENERAL DESCRIPTION *
+***********************
+
+Dialog windows
+---------------
+resource_name = identifier for Dialog_window contents (must be an byte number eg. ID = 32 );
+
+Position      = x1, y1, x2, y2;
+
+[Comment]: all windows are popup wnds - no child wnd supported (in future...) ;
+
+Caption      = the title of the window (could be empty);
+
+Controls :
+---------------------------------------------------------------------
+
+CHECKBOX 
+  - text   = the text displayed near the check box
+  - ID     = the ID
+  - position = x1, y1, x2, y2
+
+(RADIOBUTTON)
+
+COMBOBOX
+  - ID     = the ID
+  - position = x1, y1, x2, y2
+  - the list of stings =  PStringArray : ^TStringArray;
+			  TStringArray = record
+			       PString : ^String;
+           		     NextString: PStringArray;
+			  end;
+ - returns the ID of a spec. string;
+------------------------------------------------------------
+BUTTONS
+ - ID
+ - text
+ - position x1, y1, x2, y2
+
+constants:
+
+BS_PUSHBUTTON [ok] 
+  or 
+BS_RADIOBUTTON (.) 
+  or 
+BS_CHECKBOX (_/)
+
+BS_OWNERDRAW (drawn by the owner eg. a image file )
+
+BS_TEXT = BS_LEFTTEXT or BS_RIGHTTEXT or BS_CENTERTEXT
+
+--> BN_CLICKED : Boolean 
+------------------------------------------------------------
+TEXTS - TX_XXXX
+
+   TX_WARP = TX_LEFT or TX_RIGHT or TX_CENTER ;
+
+ noneditable = 
+       text : string
+       Position x1, y1, x2, y2 
+       nondiscardable text (auto justify text)
+ editable    =
+       prevtext:string
+       position x1, y1, x2, y2
+
+------------------------------------------------------------              
+ICON or BITMAT
+ spec  - STB_XXXX
+  name = path to file (*.ico or *.bmp or *.pcx);
+  position : x1, y1, x2, y2
+------------------------------------------------------------
+
+STRING TABLE
+ string - id  .... string 
+
+------------------------------------------------------------
+VERSION INFO
+ ..................
+
+------------------------------------------------------------
+
+The Application windows had a menu attached to the dialog wnd..... 
+(difference)
+
+------------------------------------------------------------
+
+************************
+* Detailed Description *
+************************
+

@@ -1,0 +1,87 @@
+		-----------------------------------------
+		------==== Hyper Text Resource ====------
+		--------------------------Language-------
+
++------------+
+| Facilities |
++------------+
+
+   - save more than 85% (~84,1798...) memory of hard disk, usually 
+     used by Point ResourCe files (*.prc)
+   - fast file-access
+   - easy modification on window's properties
+   - you can implement all your windows, only in one file
+   - use the COMPHTRL.EXE program to compress your resource
+     files for get them ready to implement them in your GUI
+   - the COMPHTRL.EXE is a program that compress and decompress
+     (HTR --> PRC , PRC --> HTR), compressing between 60%-70% (HTR)
+     and saves 96% more hard disk memory usually used by previous PRC files 
+		(view 'Compress HTR Method.txt')
+   - simple key codes, can help you to create windows quickly
+     there are only 6 commands written in <brackets> and 4 options-vars
+
+  The key codes:
+         WINDOW BUTTON INPUT CECKBOX RADIOBOX COMBOBOX
+  and the opcodes:
+	 ID INSERTPOINT POSITION STRING
+
+Memory useb by opcodes and keycodes:
+--------------------
+ID 		= 001 byte
+INSERTPOINT	= 004 bytes
+POSITION 	= 008 bytes
+STRING		= 256 bytes
+---------------------------------------------
+WINDOW  , BUTTON  , INPUT     =   00265 bytes
+CECKBOX , RADIOBOX, COMBOBOX  = 256*n+5 bytes (where n is the number of strings);
+---------------------------------------------
+
+
++--------+
+| Syntax |
++--------+
+
+o) When you want to start editing something (the keycodes) you just use
+the following procedure : 
+                            <KeyCode>
+				........
+			    </KeyCode> - for stoping the edit of the
+					 keyword
+
+o) you can define multiple keycodes, in the same field:
+			   <KeyCode>
+   				id=1;
+				........
+				id=2;
+				........
+			   </Keycode>
+ 	
+o) you can use the '=' bynary operator to assign the vars to the specific vals.
+	ex. 	id=....;
+		position=....;
+		string=...;
+
+o) every assignment always ends with an terminator ';'
+
+o) the string var must start and ends with '"'
+	ex. 	string="mystring";
+
+!) at every KeyCode some opcodes must be defined in THIS ORDER.
+    window  	id		{the id:byte(0..255) of the window}
+		position	{x1,y1,x2,y2 : word (0..65535)}
+		string		{the title of the window (max. 245 chars)}
+    ceckbox	id		{...}
+		insertpoint 	{the point of where the ceckbox list start}
+		string	
+		string		
+		......		{the list of strings}
+		string
+    combobox, radiobox = ceckbox
+    button	id		{...}
+		position	{...}
+		string		{the caption of the button}
+    input	id		{...}
+		position	{the X, Y, MaxX, MaxY}
+		string		{can be referd olso to a file ex. string="myfile.ext"}
+
+*******************************************************************************************

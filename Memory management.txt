@@ -1,0 +1,14 @@
+Units memory usage - in bytes
+=============================
+
+System - 77968
+Crt    - 1584
+Dos    - 0
+DPMS   - 0
+Graph  - 3200
+keyboard - 16
+gdi     - 9488
+playHsc - 1584
+-------------
+mouse - 4344
+RCScript - 0

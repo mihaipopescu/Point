@@ -1,0 +1,80 @@
+				+-----------------------------------+
+				| ARC - DEARC Method for RadioBoxes | (BitWise)
+				+-----------------------------------+
+
+         					Copyright by (c) System Quick Programming Group
+						Made by Mihai Popescu.
+
+For you to understand this is good to know the "Bitwise Operators"...
+#0,#1,#2,#3,........,#255
+00000000,00000001,00000010,00000011,..........,11111111
+ (.)  with this method you can ARChive and DeARChive bits, bytes.
+ (.)  from logical (boolean) list (8 boolean vars) ==> resulting a byte (1 var) and vice-versa
+
+
+List (eg.):
+
+0  |
+1  |
+0  |
+0  |=> 01000111 = $47 = 71
+0  |
+1  |
+1  |
+1  |
+-
+0  |
+1  |
+1  |
+0  |=> 01101100 = $6C = 108
+1  | 
+1  |
+0  |
+0  |
+-
+1  |=> 10000000 = $80 = 128
+-						// additional bits
+0
+0
+0
+0
+0
+0
+0
+===================================================================
+so 24 bytes you can ARC in 3 bytes (71,108,128); and you can do that in the opposite dir
+-------------------------------------------------------------------
+256 bytes / 8 (bits/byte) = 32 bytes (max.)
+
+Init --> 0 all bits (in all 32 bytes) --> to put '0' in all bytes.
+Arc & DeArc the bytes with the 'GetBit' and 'SetBit' function (provided by GDI.unit)
+
+!!! NOTE !!! Using this method you save 8 times more memory !
+	     That's Bitwise all about: to accomplish your goal with minimal memory requirements.	
+
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+head == 0000.0000 - 0010.0000  ( $00-$1F )
+
+the first 6(0-5) bits records -> # bytes next (0-32)
+
+bit 6,7 = 00 -  Nothing (empty);
+	  01 - 	CeckBox
+	  10 -	RadioBox
+	  11 -  ComboBox
+
+---file-format----------------------------
+#head#id#byte...#byte#head#id#byte...#byte
+------------------------------------------
+
+$81 $01 $03 $81 $02 $04 $41 $01 $20 ......
+
+
+done .... 21:30 10.06.2002
+
+
+
+
+
+
